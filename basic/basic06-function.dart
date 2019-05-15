@@ -41,4 +41,22 @@ main(List<String> arguments) {
 
   assert(say('Bob') ==
       'Bob says hello'); // positiond params can have default value
+
+  // function can be passed as parameter
+  void printElement(int element) {
+    print(element);
+  }
+
+  var list = [1, 2, 3];
+
+  // Pass printElement as a parameter.
+  list.forEach(printElement);
+
+  // anonymous function
+  var list2 = ['apples', 'bananas', 'oranges'];
+  list2.forEach((item) {
+    print('${list2.indexOf(item)}: $item');
+  });
+  // arrow function
+  list2.forEach((item) => print('${list2.indexOf(item)}: $item'));
 }
