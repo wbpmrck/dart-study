@@ -24,6 +24,14 @@ class Employee extends Person {
   }
 }
 
+class Boss implements Person {
+  String bossName;
+  String get firstName => bossName; //实现接口1
+  void set firstName(name) => bossName = name; //实现接口1
+
+  Boss(this.bossName);
+}
+
 class Point {
   final num x;
   final num y;
@@ -45,6 +53,62 @@ class Point {
     var dy = y - other.y;
     return sqrt(dx * dx + dy * dy);
   }
+}
+
+class Rectangle {
+  num left, top, width, height;
+
+  Rectangle(this.left, this.top, this.width, this.height);
+
+  // Define two calculated properties: right and bottom.
+  num get right => left + width;
+  set right(num value) => left = value - width;
+  num get bottom => top + height;
+  set bottom(num value) => top = value - height;
+}
+
+abstract class Animal {
+  // Define instance variables and methods...
+
+  void shout(); // Define an abstract method.
+}
+
+class Dog extends Animal {
+  void shout() {
+    // Provide an implementation, so the method is not abstract here...
+    print('wof wof!');
+  }
+
+  @override
+  void noSuchMethod(Invocation invocation) {
+    print('You tried to use a non-existent member: ' +
+        '${invocation.memberName}');
+  }
+}
+
+class Vector {
+  final int x, y;
+
+  Vector(this.x, this.y);
+
+  Vector operator +(Vector v) => Vector(x + v.x, y + v.y);
+  Vector operator -(Vector v) => Vector(x - v.x, y - v.y);
+
+  // Operator == and hashCode not shown. For details, see note below.
+  // ···
+}
+
+// class is also work,but mixable class has many limits:no constructor and so no....
+// class Robot {
+mixin Robot {
+  String robotName = '';
+  void run() {
+    print('robot:${robotName} is running');
+  }
+}
+
+class RobotDog extends Dog with Robot {
+  RobotDog();
 }
 
 void main() {
@@ -86,4 +150,33 @@ void main() {
   print(p3.distanceFromOrigin);
 
   print('distance is:${p2.distanceTo(p)}');
+
+  //Getters and setters
+
+  var rect = Rectangle(3, 4, 20, 15);
+  assert(rect.left == 3);
+  rect.right = 12;
+  assert(rect.left == -8);
+
+  // implement interface
+  var boss = Boss('clark');
+  print(boss.firstName);
+
+  // extend class
+  var bingo = Dog();
+  bingo.shout();
+
+  // no such method
+  // bingo.run();   //这里不能运行，得使用dynamic才能避免编译器报错
+
+  // override operator
+  final v1 = Vector(2, 3);
+  final w1 = Vector(2, 2);
+
+  assert((v1 + w1).x == 4);
+  assert((v1 + w1).y == 5);
+
+  RobotDog sammy = RobotDog();
+  sammy.shout();
+  sammy.run();
 }
