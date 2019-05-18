@@ -4,6 +4,12 @@
   // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [{
+      "name": "basic12-generic",
+      "type": "dart",
+      "request": "launch",
+      "program": "basic/basic12-generic.dart"
+    },
+    {
       "name": "basic11-control-flow",
       "type": "dart",
       "request": "launch",
