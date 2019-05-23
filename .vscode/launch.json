@@ -4,6 +4,18 @@
   // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [{
+      "name": "basic13-future-async-await",
+      "type": "dart",
+      "request": "launch",
+      "program": "basic/basic13-future-async-await.dart"
+    },
+    {
+      "name": "lib-base",
+      "type": "dart",
+      "request": "launch",
+      "program": "advance/library/lib-base.dart"
+    },
+    {
       "name": "basic12-generic",
       "type": "dart",
       "request": "launch",
